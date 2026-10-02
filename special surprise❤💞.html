@@ -1,0 +1,819 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Your Little World ♡</title>
+
+<style>
+:root {
+    --pink: #ffb8d8;
+    --lavender: #cbb8ff;
+    --white: #fff8ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 15% 15%, #684c86, transparent 35%),
+        radial-gradient(circle at 85% 75%, #633c70, transparent 38%),
+        linear-gradient(135deg, #171128, #2b1b40, #191329);
+    overflow-x: hidden;
+}
+
+/* Starry background */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 90px 110px, #ffe0ef, transparent),
+        radial-gradient(1px 1px at 180px 70px, white, transparent);
+    background-size: 220px 170px;
+    opacity: 0.45;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, 92%);
+    margin: auto;
+    padding: 24px 0 45px;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ffffff25;
+}
+
+.logo {
+    color: #f0dffb;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    padding: 11px 16px;
+    border: 1px solid #ffffff35;
+    border-radius: 30px;
+    color: white;
+    background: #ffffff10;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    background: linear-gradient(110deg, var(--pink), var(--lavender));
+    color: #241632;
+    border-color: transparent;
+    box-shadow: 0 5px 22px #d6a4e833;
+}
+
+/* Page sections */
+
+.page {
+    display: none;
+    text-align: center;
+    padding: 55px 0 20px;
+    animation: appear 0.4s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.emoji {
+    font-size: 3.5rem;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 18px #ffc2e566);
+}
+
+.small-heading {
+    color: #f4c7e2;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+}
+
+h1,
+h2 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3.3rem);
+}
+
+.gradient-text {
+    background: linear-gradient(100deg, #ffe0ef, #d8c8ff, white);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.description {
+    color: #e1d5eb;
+    line-height: 1.9;
+    max-width: 650px;
+    margin: 0 auto 25px;
+}
+
+/* Homepage cards */
+
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 900px;
+    margin: 38px auto 0;
+    text-align: left;
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 250px;
+    padding: 25px 21px;
+    border: 1px solid #ffffff35;
+    border-radius: 25px;
+    background: linear-gradient(150deg, #ffffff1c, #ffffff08);
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 15px 45px #08051530;
+}
+
+.home-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--pink);
+    background: linear-gradient(150deg, #ffc4df25, #d3c0ff15);
+    box-shadow: 0 15px 40px #e4a5db18;
+}
+
+.card-emoji {
+    font-size: 2.7rem;
+    margin-bottom: 22px;
+}
+
+.home-card strong {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.home-card small {
+    color: #dfd2ed;
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.card-link {
+    margin-top: auto;
+    padding-top: 22px;
+    color: #ffcce5;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.footer-note {
+    color: #cbb8dc;
+    margin-top: 30px;
+    font-size: 0.85rem;
+}
+
+/* Glass cards */
+
+.glass-card {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: clamp(22px, 4vw, 38px);
+    text-align: left;
+    border: 1px solid #ffffff30;
+    border-radius: 27px;
+    background: linear-gradient(145deg, #ffffff17, #ffffff08);
+    box-shadow: 0 18px 55px #09061530;
+    backdrop-filter: blur(12px);
+}
+
+.letter-text {
+    font-family: Georgia, serif;
+    font-size: 1.08rem;
+    line-height: 1.95;
+}
+
+.letter-text p {
+    margin-bottom: 22px;
+}
+
+.signature {
+    color: #ffd0e7;
+    font-size: 1.3rem;
+}
+
+/* Feelings text box */
+
+label {
+    display: block;
+    color: #ffe0ef;
+    font-weight: bold;
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+}
+
+textarea {
+    width: 100%;
+    min-height: 240px;
+    resize: vertical;
+    padding: 18px;
+    border: 1px solid #ffffff35;
+    border-radius: 18px;
+    background: #170f25b8;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px #ffc4df20;
+}
+
+textarea::placeholder {
+    color: #b9a9c8;
+}
+
+/* Buttons */
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.main-button {
+    padding: 13px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(110deg, var(--pink), var(--lavender));
+    color: #241632;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.main-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 24px #d6a4e844;
+}
+
+.secondary-button {
+    padding: 13px 20px;
+    border: 1px solid #ffffff35;
+    border-radius: 30px;
+    background: #ffffff10;
+    color: white;
+    cursor: pointer;
+}
+
+.hint {
+    margin-top: 18px;
+    color: #c9b9d8;
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+.output {
+    display: none;
+    white-space: pre-wrap;
+    line-height: 1.8;
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid #ffffff25;
+    border-radius: 16px;
+    background: #120c1e99;
+}
+
+/* Virtual hug */
+
+.teddy {
+    display: inline-block;
+    font-size: 7rem;
+    animation: teddyBounce 2s ease-in-out infinite;
+}
+
+@keyframes teddyBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(3deg);
+    }
+}
+
+.hug-message {
+    max-width: 550px;
+    min-height: 80px;
+    margin: 20px auto;
+    color: #ffe0ef;
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* Floating hearts */
+
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp 1.5s ease-out forwards;
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(0.7);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.5);
+    }
+}
+
+footer {
+    margin-top: 45px;
+    text-align: center;
+    color: #a997bb;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+}
+
+/* Phone layout */
+
+@media (max-width: 700px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .home-cards {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .home-card {
+        min-height: 175px;
+    }
+
+    .card-emoji {
+        margin-bottom: 12px;
+    }
+
+    .container {
+        width: 91%;
+        padding-top: 17px;
+    }
+
+    .page {
+        padding-top: 38px;
+    }
+
+    nav {
+        gap: 7px;
+    }
+
+    .nav-button {
+        padding: 9px 12px;
+        font-size: 0.85rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<header>
+    <div class="logo">✦ A LITTLE PLACE FOR YOU ♡</div>
+
+    <nav aria-label="Website navigation">
+        <button class="nav-button active" data-page="home">⌂ Home</button>
+        <button class="nav-button" data-page="letter">💌 Letter</button>
+        <button class="nav-button" data-page="feelings">☁️ Feelings</button>
+        <button class="nav-button" data-page="hug">🧸 Virtual Hug</button>
+    </nav>
+</header>
+
+<main>
+
+<!-- HOMEPAGE -->
+
+<section class="page active" id="home">
+
+    <div class="emoji">🌙💗</div>
+
+    <div class="small-heading">A tiny corner made with love</div>
+
+    <h1 class="gradient-text">
+        Welcome to your<br>little world ♡
+    </h1>
+
+    <p class="description">
+        A soft little place made just for you.
+        Whenever your thoughts feel heavy, whenever you need reassurance,
+        or whenever you simply need a smile, you can come here.
+        Take your time, okay? 🧸🥺💞❤
+    </p>
+
+    <div class="home-cards">
+
+        <button class="home-card" data-page="letter">
+            <span class="card-emoji">💌</span>
+            <strong>Surprise Letter</strong>
+            <small>A little reminder of how much you mean to me and why you have a special place in my heart.</small>
+            <span class="card-link">OPEN YOUR LETTER →</span>
+        </button>
+
+        <button class="home-card" data-page="feelings">
+            <span class="card-emoji">☁️</span>
+            <strong>Your Feelings</strong>
+            <small>No choices and no pressure. Just a quiet space to put your thoughts into words.</small>
+            <span class="card-link">LET IT OUT →</span>
+        </button>
+
+        <button class="home-card" data-page="hug">
+            <span class="card-emoji">🧸</span>
+            <strong>Virtual Hug</strong>
+            <small>A little teddy, a little warmth, and a reminder to be gentle with yourself.</small>
+            <span class="card-link">GET A HUG →</span>
+        </button>
+
+    </div>
+
+    <p class="footer-note">
+        You don't have to explain everything perfectly to be understood. ♡
+    </p>
+
+</section>
+
+
+<!-- SURPRISE LETTER -->
+
+<section class="page" id="letter">
+
+    <div class="emoji">💌🌷</div>
+
+    <div class="small-heading">Open whenever you need a reminder</div>
+
+    <h2 class="gradient-text">A letter from my heart ♡</h2>
+
+    <div class="glass-card letter-text">
+
+        <p>Hey,my kuchupuchu🥺🥺</p>
+
+        <p>
+        I can understand that nowadays you feel uneasy,upset,depressed and overthinking about me that i will leave you.Iknow you are sooo attached with me and you are afraid of losing me.You think this is not good but actually its a good sign it shows that how much you love me and how deeply attached you are with me.There is nothing wrong about it,i just want to tell you that don't overthink too much that just make you depressed again and again.I understand i make a lot of mistakes i am not good in giving replies and responses but i am trying to improve it i am trying to do everything and i am not gonna leave you ever.I love you so much i want a future with you i want to have chote chote aulaad with you.sorry emoji option not working but just understand that i am seriously in love with you.Aisa nhi hai ki mujhe tumare chinta nhi hai aur tumhe forgranted lete hun mujhe bhi tension hoti hai i also fear of losing you mai bhi jab tum reply nhi dete ho to baar baar check krte hun insta university mai jab tum aas pass dekh rhe hote ho i fear ki tum koi ladki na dekh rhe ho i also feel jealous of your ladki classmates i know vo tumare muh bhole behn hai i know mere dimaag ko ye pta hai pr mera dil jealous feel krta hai mai tumhe isliye nhi bolte hun kyuki bhai mere bhi hai aur you will say ki tum apne bhaiyo se baate kr sakte ho pr mai apne behno se baat nhi kr sakta hun so i never say anything to you jaisa tum feel krte ho mai bhi krte hun afterall hum twins hai na same things same feelings same same tumhe bhi kyi baar mere pr gussa aata hai ki mai tumhe ignore kr rhe hun aisa nhi hai mai ignore nhi krte hun mere kabhi gharwale bula lete hai kabhi college ka kaam hota hai tum batao you just imagine ki tum aise ghar pr ho jaha tumare parents hai tumare aas pass ghumte rehte hai as ghar hi chota hai aur tumhe kaam krne ke liye bolte hai how i message freely mai to kisi dost ko msg kr dun usse mai bol dete hai ki raat ko kisi ko msg nhi krna hai phone rakh de pc mai bhi risk lekar krte hun jab aane wale hote hai tabs change kr dete hun it is highly tough for me to do it sabke pass freedom nhi hoti hai kyi mere jaise bhi hai jinke maa baap protective bnte bnte strict hi bn jaate hai aur unne pta bhi nhi lagta hai ki hum protective se jeyada restrictive bn gye hai mere maa baap galat bhi nhi hai jammana hi kharab hai but in these situation mere liye tough ho jata hai aur hn kyi baar galti mai bhi kr dete hun ki grp mai msg krte krte tumhe msg nhi krte hun isliye maine grp mai baat krna kam kr diya hai tumare liye mai abh kisi se itna baat nhi krte hun na grp mai na chat mai even account private kr diya hai maine isliye nhi kiya hai because mujhe darr hai maine isliye kiya hai because you feel insecure aur tumhe sad dekhna mujhe nhi pasand mai khud depressed ho jaati hun mai to advice dene mai bhi aache nhi hun i just try to give efforts jinta de sakun utna krte hun i am sorry for the mistakes i have done mai bhi insaan hun galtiya krte hun aur mai har baar hi galti kr dete hun aur mujhe pta bhi  nhi lagta hai kia maine galti kr di hai mai careless bahut hun isliye dant khate hun tumne apne life mai dokha khaya hai maine to apne life mai khud ko bhi khoya hai aur suicide krne se bhi darr lagta tha mujhe mai 9th se hi sochte thi ki kash mai maar jaun mujhe nhi rehna iss zindige mai mai bhi mentally unstable hi hun mai bs kisi ko batate nhi hun kyuki koi mujhe samjhta nhi pr tum mujhe samjhte ho so i always tell you hn tum mujhse puchte ho na ki mai koi baat face to face kyu nhi batate hun kyuki agar batane lag gyi to roo dungi i know mai roone lag jaungi aur khud ko sambhal bhi nhi paungi issliye i never start aur dusre baat mujhe hamara jo face to face wala time hota hai usse ruin nhi krna hota mujhe tumare sath time spend krna pasand hai i love to be with you laugh with you flirts with you i always want to be with you aur tum bologe ki mai bored ho jaungi mai guarantee se keh sakti hun ki mai kabhi tumare sath bored nhi honge i want to live with you always forever with you I LOVEEE YOUUU SOOO MUCHHH. Tum itne tension mat liya kro khaya aache se khaya kro mai tumhe kabhi chodkr nhi jaungi i promise tabhi to humne promise ring dali hai na we promised ki hum ek dusre ko kabhi chodkr nhi jayenge right na so i promise mai tumhe kabhi chodkr nhi jaungi tum bhi mujhe kabhi chodkr mat jana pleaseeeeeeeeeeeeeeee mai tumse bahut pyaar krte hun aur hamesha tumare sath hi rehna chahte hun.....  ye jo hamara phase chal raha hai its the tough phase because bola jata hai ki 5th month mai things get complicated aur couples ladhte hai i dont want to fight with you i want ki hum apne feelings express kare aur sath mai sab kuch solve kre aur ek dusre ke sath khush rhe kabhi bhi serious wala jhagra na kare normal choti choti wale to chalte hai but i dont ki kisi jhagre karan hamara bond weak hooo jaye so please dont give it dont worry hum dono milkr sab musibaat ko face karenge ek sath sath milkr sab kuch solve karenge i am with you forever chahe kuch bhi ho jaye dont worry hum ye tough phase se bhi nikal jayenge dont worry 🥺🥺🥺. I LOVEEE YOUUUU SOOO MUCHHHH FOREVERRRR AND EVERRRRRR KUCHUPUCHU❤️❤️💜💜💜😭😭😭🥺🥺🥺
+        </p>🧸💋💞
+
+
+        <p class="signature">
+    
+        </p>
+
+    </div>
+
+    <button class="main-button" data-page="home">← BACK HOME ♡</button>
+
+</section>
+
+
+<section class="page" id="feelings">
+    <div class="emoji">☁️💗☁️</div>
+
+    <p class="small-heading">A safe little space · Just for you</p>
+
+    <h2 class="gradient-text">How Are You, Really?</h2>
+
+    <p class="description">
+        You don't have to hide your feelings here.
+        Write whatever is on your mind. Every feeling deserves to be heard. ♡
+    </p>
+
+    <div class="glass-card feelings-card">
+        <label for="feelingsText">What's on your mind today? 💌</label>
+
+        <textarea
+            id="feelingsText"
+            placeholder="Tell me what's on your mind... I'm listening. ♡"
+            rows="6"
+        ></textarea>
+
+        <div class="button-row">
+            <button class="main-button" id="saveFeeling" type="button">
+                SAVE MY FEELINGS 💗
+            </button>
+
+            <button class="secondary-button" id="clearFeeling" type="button">
+                Clear box
+            </button>
+        </div>
+
+        <p class="hint" id="saveStatus" aria-live="polite">
+            Your words matter. Take your time. ♡
+        </p>
+    </div>
+
+    <div class="glass-card feelings-card">
+        <h2 class="diary-title">Our Little Diary 📖</h2>
+
+        <p class="hint">
+            Your saved messages will stay here when you revisit this website
+            in the same browser. You can delete any message whenever you wish. ♡
+        </p>
+
+        <div id="savedFeelings"></div>
+    </div>
+
+    <button class="main-button" type="button" data-page="home">
+        ← BACK HOME ♡
+    </button>
+</section>
+
+
+<!-- VIRTUAL HUG -->
+
+<section class="page" id="hug">
+
+    <div class="emoji">💗✨</div>
+
+    <div class="small-heading">A little warmth, just for you</div>
+
+    <h2 class="gradient-text">Come here, you 🧸</h2>
+
+    <p class="description">
+        You deserve a moment to breathe.
+        You don't need to solve everything right now.
+    </p>
+
+    <div class="glass-card" style="text-align:center">
+
+        <div class="teddy">🧸</div>
+
+        <div class="hug-message" id="hugMessage">
+            Sending you the warmest, safest, biggest virtual hug.
+            You don't have to figure everything out this second. ♡
+        </div>
+
+        <button class="main-button" id="hugButton">
+            ONE MORE HUG PLEASE 🫂
+        </button>
+
+    </div>
+
+    <button class="main-button" data-page="home">← BACK HOME ♡</button>
+
+</section>
+
+</main>
+
+<footer>
+    made with a little love, just for you ♡
+</footer>
+
+</div>
+
+<script>
+const select = selector => document.querySelector(selector);
+
+/* Navigate between the homepage and sections */
+
+function showPage(pageId) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.toggle("active", page.id === pageId);
+    });
+
+    document.querySelectorAll(".nav-button").forEach(button => {
+        button.classList.toggle("active", button.dataset.page === pageId);
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("[data-page]").forEach(button => {
+    button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+
+/* Prepare the message typed in the feelings box */
+
+
+    /* ===== LITTLE WORLD FEELINGS DIARY ===== */
+
+(() => {
+    const storageKey = "littleWorldSavedFeelings";
+
+    const textBox = document.getElementById("feelingsText");
+    const saveButton = document.getElementById("saveFeeling");
+    const clearButton = document.getElementById("clearFeeling");
+    const status = document.getElementById("saveStatus");
+    const diary = document.getElementById("savedFeelings");
+
+    if (!textBox || !saveButton || !clearButton || !status || !diary) {
+        console.error("Feelings diary: One or more HTML elements are missing.");
+        return;
+    }
+
+    function getMessages() {
+        try {
+            return JSON.parse(localStorage.getItem(storageKey) || "[]");
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function renderDiary() {
+        diary.replaceChildren();
+
+        const messages = getMessages();
+
+        if (messages.length === 0) {
+            const empty = document.createElement("p");
+            empty.className = "empty-diary";
+            empty.textContent = "Your little diary is waiting for you. 💗";
+            diary.appendChild(empty);
+            return;
+        }
+
+        messages.slice().reverse().forEach(message => {
+            const card = document.createElement("div");
+            card.className = "saved-feeling-card";
+
+            const date = document.createElement("small");
+            date.className = "saved-feeling-date";
+            date.textContent = message.date;
+
+            const content = document.createElement("p");
+            content.className = "saved-feeling-text";
+            content.textContent = message.text;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className =
+                "secondary-button delete-feeling-button";
+            deleteButton.textContent = "🗑️ Delete message";
+
+            deleteButton.addEventListener("click", () => {
+                if (!confirm("Are you sure you want to delete this message?")) {
+                    return;
+                }
+
+                const updated = getMessages().filter(
+                    item => item.id !== message.id
+                );
+
+                try {
+                    localStorage.setItem(storageKey, JSON.stringify(updated));
+                    renderDiary();
+                    status.textContent = "Message deleted. ♡";
+                } catch (error) {
+                    status.textContent = "Couldn't delete the message.";
+                }
+            });
+
+            card.append(date, content, deleteButton);
+            diary.appendChild(card);
+        });
+    }
+
+    saveButton.addEventListener("click", () => {
+        const text = textBox.value.trim();
+
+        if (!text) {
+            status.textContent = "Write something before saving. ♡";
+            return;
+        }
+
+        try {
+            const messages = getMessages();
+
+            messages.push({
+                id: Date.now().toString() + Math.random().toString(16),
+                text: text,
+                date: new Date().toLocaleString()
+            });
+
+            localStorage.setItem(storageKey, JSON.stringify(messages));
+
+            textBox.value = "";
+            status.textContent = "Your feelings have been saved. 💗";
+
+            renderDiary();
+        } catch (error) {
+            status.textContent = "Couldn't save. Check your browser storage.";
+        }
+    });
+
+    clearButton.addEventListener("click", () => {
+        textBox.value = "";
+        status.textContent =
+            "Typing box cleared. Your saved messages are still here. ♡";
+    });
+
+    renderDiary();
+})();
+
+/* Virtual hug messages */
+
+const hugMessages = [
+    "Sending you the warmest, safest, biggest virtual hug. You don't have to figure everything out this second. ♡",
+    "Take one slow breath, okay? You're allowed to have hard days, and you deserve kindness on them too. 💗",
+    "Imagine this teddy sitting beside you, reminding you that you matter and your feelings deserve to be heard. 🧸",
+    "You don't need perfect words. Start wherever you can; little by little is still progress. 🌷",
+    "One difficult moment cannot tell your whole story. Be gentle with yourself today. ✨",
+    "A little reminder: you are cared for, you can talk about what worries you, and you don't have to solve everything at once. 💞"
+];
+
+let hugIndex = 0;
+
+select("#hugButton").addEventListener("click", () => {
+    hugIndex = (hugIndex + 1) % hugMessages.length;
+    select("#hugMessage").textContent = hugMessages[hugIndex];
+
+    const hearts = ["💗", "♡", "💖", "✨", "💕"];
+
+    for (let i = 0; i < 8; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = (25 + Math.random() * 50) + "vw";
+        heart.style.top = (55 + Math.random() * 25) + "vh";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1600);
+    }
+});
+</script>
+
+</body>
+</html>
+```
